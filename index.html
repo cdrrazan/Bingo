@@ -400,7 +400,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 16px;
       min-height: 48px;
       width: 100%;
       margin: 22px 0 4px;
@@ -412,6 +412,16 @@
     }
 
     .recent-strip:empty { display: none; }
+
+    .recent-balls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
 
     .recent-badge { flex: 0 0 auto; }
 
@@ -937,21 +947,24 @@
     }
 
     function renderRecent() {
-      const recent = game.calledNumbers.slice(-6).reverse();
+      const recent = [...game.calledNumbers].reverse(); // newest first, full history
       el.recentStrip.innerHTML = '';
       if (recent.length === 0) return;
 
       const label = document.createElement('span');
       label.className = 'recent-label';
-      label.textContent = 'Recent';
+      label.textContent = `Recent (${recent.length})`;
       el.recentStrip.appendChild(label);
 
+      const balls = document.createElement('div');
+      balls.className = 'recent-balls';
       recent.forEach(num => {
         const badge = document.createElement('span');
         badge.className = 'recent-badge';
         badge.textContent = num;
-        el.recentStrip.appendChild(badge);
+        balls.appendChild(badge);
       });
+      el.recentStrip.appendChild(balls);
     }
 
     function updateDisplay() {
