@@ -539,9 +539,13 @@
       font-size: 0.82em;
       text-transform: uppercase;
       letter-spacing: 2px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .called-info { font-weight: 700; color: var(--violet); margin-left: 6px; letter-spacing: 0; text-transform: none; font-size: 1.05em; }
+    .called-info { font-weight: 700; color: var(--violet); letter-spacing: 0; text-transform: none; font-size: 1.05em; white-space: nowrap; }
 
     .board {
       display: grid;
