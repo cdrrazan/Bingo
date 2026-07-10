@@ -124,7 +124,7 @@
       border-radius: 26px;
       box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.18);
       padding: 40px;
-      max-width: 840px;
+      max-width: 1120px;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -301,6 +301,16 @@
     .btn-block { width: 100%; }
 
     .game-container { text-align: center; }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 400px) 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .game-main { display: flex; flex-direction: column; }
+    .game-main .controls { margin-bottom: 0; }
 
     /* ---------- Stage + lottery ball ---------- */
     .display-section {
@@ -633,6 +643,12 @@
     }
 
     /* ---------- Responsive ---------- */
+    @media (max-width: 920px) {
+      .game-grid { grid-template-columns: 1fr; gap: 20px; }
+      .game-main .controls { margin-bottom: 0; }
+      .board-section { margin-top: 4px; }
+    }
+
     @media (max-width: 768px) {
       body { padding: 14px; }
       .main-container { padding: 30px 24px; }
@@ -725,23 +741,27 @@
       </div>
 
       <div class="game-container">
-        <div class="display-section">
-          <h3>Current Number</h3>
-          <div class="ball-wrap">
-            <div id="current_number" class="number-display" aria-live="polite" aria-atomic="true">–</div>
+        <div class="game-grid">
+          <div class="game-main">
+            <div class="display-section">
+              <h3>Current Number</h3>
+              <div class="ball-wrap">
+                <div id="current_number" class="number-display" aria-live="polite" aria-atomic="true">–</div>
+              </div>
+            </div>
+
+            <div class="recent-strip" id="recent_strip"></div>
+
+            <div class="controls">
+              <button id="next_number_btn" class="btn btn-large">Next Number</button>
+              <p class="hint">Press <span class="kbd">Space</span> or <span class="kbd">N</span> to draw the next number · <span class="kbd">U</span> to undo</p>
+            </div>
           </div>
-        </div>
 
-        <div class="recent-strip" id="recent_strip"></div>
-
-        <div class="controls">
-          <button id="next_number_btn" class="btn btn-large">Next Number</button>
-          <p class="hint">Press <span class="kbd">Space</span> or <span class="kbd">N</span> to draw the next number · <span class="kbd">U</span> to undo</p>
-        </div>
-
-        <div class="board-section">
-          <h3>Board <span class="called-info">(<span id="called_count">0</span> / <span id="total_count">91</span> called)</span></h3>
-          <div id="board" class="board" aria-label="Bingo board"></div>
+          <div class="board-section">
+            <h3>Board <span class="called-info">(<span id="called_count">0</span> / <span id="total_count">91</span> called)</span></h3>
+            <div id="board" class="board" aria-label="Bingo board"></div>
+          </div>
         </div>
 
         <div class="bottom-actions">
