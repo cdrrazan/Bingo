@@ -547,15 +547,54 @@
       }
     }
 
+    /* Tablets and small laptops */
+    @media (max-width: 768px) {
+      body { padding: 12px; }
+      .main-container { padding: 28px 24px; }
+      .display-section { padding: 28px 24px; }
+      .board { grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); }
+    }
+
+    /* Phones */
     @media (max-width: 600px) {
-      .main-container { padding: 20px; }
-      .game-header h1 { font-size: 1.6em; }
+      body { padding: 8px; align-items: flex-start; }
+      .main-container { padding: 20px 16px; border-radius: 16px; }
+      .game-header { margin-bottom: 22px; }
+      .game-header h1 { font-size: 1.5em; padding: 0 44px; }
       .theme-toggle { width: 38px; height: 38px; font-size: 1em; }
-      .settings-toggle-btn { width: 100%; }
+      .settings-toggle { flex-wrap: wrap; }
+      .settings-toggle-btn { width: 100%; flex: 1 1 100%; }
       .settings-sidebar { border-left: none; border-top: 4px solid var(--accent); }
-      .number-display { font-size: 3.2em; }
-      .controls { flex-direction: column; }
-      .btn-large { flex: 1; }
+      .settings-inputs-row { flex-direction: column; gap: 12px; }
+      .input-group { min-width: 0; justify-content: space-between; }
+      .input-group input { width: 120px; }
+      .display-section { padding: 24px 18px; margin-bottom: 16px; }
+      .number-display { font-size: 3.2em; min-height: 80px; }
+      .controls { flex-direction: column; padding: 22px 16px; margin: 18px 0; }
+      .btn-large { flex: 1 1 auto; width: 100%; font-size: 1.35em; padding: 20px; min-width: 0; }
+      .board { grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px; }
+      .bottom-actions { gap: 10px; }
+      .bottom-actions .btn { flex: 1 1 auto; min-width: 130px; }
+    }
+
+    /* Small / narrow phones */
+    @media (max-width: 380px) {
+      .game-header h1 { font-size: 1.3em; }
+      .number-display { font-size: 2.6em; }
+      .board { grid-template-columns: repeat(auto-fill, minmax(36px, 1fr)); }
+      .board-cell { font-size: 0.85em; }
+      .recent-badge { width: 36px; height: 36px; font-size: 0.85em; }
+      .bottom-actions { flex-direction: column; }
+      .bottom-actions .btn { width: 100%; }
+    }
+
+    /* Prevent hover-lift getting stuck on touch devices */
+    @media (hover: none) {
+      .btn:hover, .btn-large:hover, .settings-toggle-btn:hover, .theme-toggle:hover {
+        transform: none;
+        box-shadow: none;
+      }
+      .btn:active { transform: scale(0.98); }
     }
 
     @media (prefers-reduced-motion: reduce) {
